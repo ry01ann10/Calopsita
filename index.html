@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guia de Criação de Calopsitas – Ebook</title>
+  <meta name="description" content="Aprenda como criar calopsitas com segurança, carinho e técnica. Ebook completo para iniciantes e apaixonados por aves." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Paleta */
+      --pastel-yellow: #FFF4B3;
+      --pastel-yellow-2: #FFEFA1;
+      --teal-soft: #8EC5C1;
+      --teal-dark: #4A9B95;
+      --sand: #F8EACC;
+      --ink: #3A3A3A;
+      --ink-soft: #5C5C5C;
+      --white: #FFFFFF;
+
+      /* Layout */
+      --maxw: 1100px;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--pastel-yellow) 0%, var(--sand) 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;border-radius:var(--radius)}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index: 50;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: rgba(255, 244, 179, 0.75);
+      border-bottom: 1px solid rgba(74,155,149,0.15);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700;
+    }
+    .brand .logo{
+      width:36px;height:36px;border-radius:50%;
+      background: radial-gradient(circle at 35% 35%, #FFD05E, #FFE48A 60%, #FFF4B3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      position:relative;
+    }
+    .brand .logo::after{
+      content:""; position:absolute; right:2px; top:8px;
+      width:12px; height:12px; border-radius:50%; background:#8EC5C1; opacity:0.9;
+    }
+    .nav .actions{display:flex; gap:12px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 18px; border-radius:12px; border:1px solid transparent;
+      font-weight:600; transition: all .2s ease; cursor:pointer;
+    }
+    .btn-primary{
+      background: var(--teal-soft); color: #0E3130; border-color: rgba(14,49,48,0.08);
+      box-shadow: var(--shadow);
+    }
+    .btn-primary:hover{ background: var(--teal-dark); color: var(--white) }
+    .btn-ghost{
+      background: transparent; color: var(--ink-soft);
+      border-color: rgba(74,155,149,0.25);
+    }
+    .btn-ghost:hover{ background: rgba(142,197,193,0.15) }
+
+    /* Hero */
+    .hero{
+      padding: 60px 0 30px;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns: 1.1fr 0.9fr; gap:30px;
+    }
+    .eyebrow{
+      display:inline-block; padding:6px 12px; border-radius:999px;
+      background: rgba(142,197,193,0.18); color:#0E3130; font-weight:600; font-size:13px;
+      border:1px solid rgba(74,155,149,0.15);
+    }
+    .hero h1{
+      font-family:'Merriweather', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height:1.15; margin:14px 0 10px;
+    }
+    .subtitle{
+      font-size: 16px; color: var(--ink-soft);
+      max-width: 680px;
+    }
+    .hero-card{
+      background: var(--white); border:1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;
+    }
+    .hero-card .cover{
+      background: linear-gradient(135deg, #FFEFA1, #FFF4B3 60%, #8EC5C1);
+      padding: 22px;
+    }
+    .book-mock{
+      background:#fff; border-radius:12px; border:1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      padding:18px;
+    }
+    .book-title{
+      font-weight:700; margin-bottom:8px; color:#1F1F1F;
+    }
+    .book-sub{ color:#5A5A5A; font-size:14px }
+    .hero-card .content{ padding: 18px }
+    .price{
+      display:flex; align-items:baseline; gap:8px; margin:8px 0 14px;
+    }
+    .price .now{ font-weight:800; font-size:24px; color:#0E3130 }
+    .price .old{ text-decoration: line-through; color:#7A7A7A; font-size:14px }
+
+    .trust{
+      display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:#4A4A4A;
+      margin-top:8px;
+    }
+
+    /* Benefits */
+    section{ padding: 40px 0 }
+    .section-title{
+      font-family:'Merriweather', serif; font-size: clamp(22px, 3vw, 32px); margin-bottom:16px;
+    }
+    .grid-3{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+    }
+    .card{
+      background: #fff; border:1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding:18px;
+    }
+    .badge{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      background: rgba(255, 244, 179, 0.7); border:1px solid rgba(0,0,0,0.06);
+      font-weight:600; font-size:12px; color:#5A5600;
+    }
+
+    /* Chapters */
+    .chapters{
+      background: linear-gradient(180deg, #FFF7C9, #F8EACC);
+      border-top: 1px solid rgba(74,155,149,0.15);
+      border-bottom: 1px solid rgba(74,155,149,0.15);
+    }
+    .list{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    .list .item{
+      background:#fff; border:1px solid rgba(0,0,0,0.06);
+      border-radius:12px; padding:14px;
+    }
+
+    /* Author */
+    .author{
+      display:grid; grid-template-columns: 0.8fr 1.2fr; gap:22px;
+    }
+    .author .bio{
+      background:#fff; border:1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius); padding:18px; box-shadow: var(--shadow);
+    }
+
+    /* Testimonials */
+    .testimonials .grid-3 .card{ min-height: 180px }
+
+    /* FAQ */
+    .faq .qa{
+      background:#fff; border:1px solid rgba(0,0,0,0.06);
+      border-radius:12px; padding:16px; margin-bottom:12px;
+    }
+    .qa summary{
+      cursor:pointer; font-weight:700; color:#1F1F1F;
+    }
+    .qa p{ color:#4A4A4A }
+
+    /* CTA */
+    .cta{
+      background: linear-gradient(135deg, var(--teal-soft), #BEE3DF);
+      border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow);
+      display:flex; align-items:center; justify-content: space-between; gap:16px;
+    }
+    .cta h3{ margin:0; color:#0E3130 }
+    .cta p{ margin:0; color:#1C3F3D }
+
+    /* Footer */
+    footer{
+      padding:30px 0; color:#555;
+    }
+    .footer-grid{
+      display:grid; grid-template-columns: 1.2fr 0.8fr 0.8fr; gap:18px;
+    }
+    .small{ font-size:13px; color:#6B6B6B}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid, .author, .list, .grid-3, .footer-grid{
+        grid-template-columns: 1fr;
+      }
+      .cta{ flex-direction: column; align-items: flex-start }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-weight:700;">Calopsita com Carinho</div>
+          <div class="small">Guia completo para iniciantes</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="#capitulos" class="btn btn-ghost">Conteúdo</a>
+        <a href="#faq" class="btn btn-ghost">Dúvidas</a>
+        <a href="#comprar" class="btn btn-primary">Comprar agora</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Ebook • Criação de calopsitas</span>
+        <h1>Crie calopsitas com segurança, afeto e técnica—do primeiro dia ao voo confiante.</h1>
+        <p class="subtitle">
+          Um passo a passo claro, baseado em prática e cuidado verdadeiro. Aprenda ambiente ideal,
+          alimentação, socialização, saúde preventiva e manejo do dia a dia sem estresse.
+        </p>
+        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap">
+          <a href="#comprar" class="btn btn-primary">Quero o ebook</a>
+          <a href="#beneficios" class="btn btn-ghost">Ver benefícios</a>
+        </div>
+        <div class="trust" aria-label="Sinais de confiança">
+          <div>• Atualizado para iniciantes</div>
+          <div>• Checklists imprimíveis</div>
+          <div>• Acesso vitalício</div>
+        </div>
+      </div>
+
+      <div class="hero-card" role="region" aria-label="Resumo do produto">
+        <div class="cover">
+          <div class="book-mock">
+            <div class="book-title">Guia de Criação de Calopsitas</div>
+            <div class="book-sub">Ambiente, alimentação, socialização e saúde, em linguagem fácil.</div>
+            <img src="https://images.unsplash.com/photo-1521185496955-15097b20c5fe?q=80&w=900&auto=format&fit=crop" alt="Capa ilustrativa com calopsita" />
+          </div>
+        </div>
+        <div class="content">
+          <div class="price">
+            <div class="now">R$ 49,00</div>
+            <div class="old">R$ 79,00</div>
+          </div>
+          <ul style="margin:0; padding-left:18px; color:#4A4A4A">
+            <li>PDF otimizado para celular e computador</li>
+            <li>Modelos de rotina e checklist de segurança</li>
+            <li>Bônus: tabela de alimentos seguros</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px">
+            <a id="comprar" href="#checkout" class="btn btn-primary" aria-label="Ir para checkout">Comprar agora</a>
+            <a href="#capitulos" class="btn btn-ghost">Ver capítulos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="beneficios">
+    <div class="container">
+      <h2 class="section-title">Por que este guia?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <span class="badge">Manejo sem medo</span>
+          <h3>Rotinas claras</h3>
+          <p>Passo a passo diário para limpeza, enriquecimento e interação segura, sem improvisos.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Alimentação consciente</span>
+          <h3>Nutrição prática</h3>
+          <p>Como montar uma dieta balanceada com lista de alimentos permitidos e proibidos.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Bem-estar</span>
+          <h3>Ambiente acolhedor</h3>
+          <p>Guia de gaiola, brinquedos e enriquecimento para reduzir estresse e estimular curiosidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
+  <section id="capitulos" class="chapters">
+    <div class="container">
+      <h2 class="section-title">O que você vai aprender</h2>
+      <div class="list">
+        <div class="item">
+          <h4>1. Preparando o ambiente</h4>
+          <p>Escolha da gaiola, posição na casa, temperatura, luz e segurança.</p>
+        </div>
+        <div class="item">
+          <h4>2. Primeiros dias</h4>
+          <p>Adaptação, leitura de sinais e criação de vínculo sem forçar interação.</p>
+        </div>
+        <div class="item">
+          <h4>3. Alimentação</h4>
+          <p>Base de sementes, legumes, frutas, água e suplementos com bom senso.</p>
+        </div>
+        <div class="item">
+          <h4>4. Socialização</h4>
+          <p>Passos para manuseio, comandos simples e enriquecimento positivo.</p>
+        </div>
+        <div class="item">
+          <h4>5. Saúde preventiva</h4>
+          <p>Higiene, sinais de alerta, quando procurar um veterinário de aves.</p>
+        </div>
+        <div class="item">
+          <h4>6. Rotina e brincadeiras</h4>
+          <p>Horários, trocas de brinquedos e exercícios seguros fora da gaiola.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author -->
+  <section>
+    <div class="container author">
+      <div>
+        <img src="https://images.unsplash.com/photo-1520974653400-2f7f4c3f26c5?q=80&w=900&auto=format&fit=crop" alt="Autor com calopsita" />
+      </div>
+      <div class="bio">
+        <span class="badge">Quem escreveu</span>
+        <h3>Ryan — apaixonado por calopsitas</h3>
+        <p>Mais de X anos convivendo com calopsitas e ajudando iniciantes a criarem com responsabilidade.
+        Este ebook nasce do cuidado, dos erros corrigidos e das pequenas vitórias do dia a dia.</p>
+        <p class="small">Atualizações gratuitas e linguagem acessível para quem está começando agora.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Quem já leu, recomenda</h2>
+      <div class="grid-3">
+        <div class="card">
+          <p>"Em uma semana minha calopsita estava muito mais confiante. As rotinas fizeram toda diferença."</p>
+          <p class="small">— Júlia M.</p>
+        </div>
+        <div class="card">
+          <p>"Informação prática e sem enrolação. O capítulo de alimentação vale ouro."</p>
+          <p class="small">— Carlos A.</p>
+        </div>
+        <div class="card">
+          <p>"Adorei os checklists. Deixei tudo seguro em casa e ganhei paz."</p>
+          <p class="small">— Nádia R.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Dúvidas frequentes</h2>
+      <div class="faq">
+        <details class="qa">
+          <summary>Em qual formato recebo o ebook?</summary>
+          <p>PDF otimizado para leitura em celular e computador. Link de download imediato após a compra.</p>
+        </details>
+        <details class="qa">
+          <summary>Tem garantia?</summary>
+          <p>Sim, 7 dias de garantia. Se não gostar, é só solicitar reembolso.</p>
+        </details>
+        <details class="qa">
+          <summary>Recebo atualizações?</summary>
+          <p>Atualizações futuras são incluídas sem custo adicional.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container">
+      <div class="cta" id="checkout">
+        <div>
+          <h3>Pronto para criar com confiança?</h3>
+          <p>Baixe agora e tenha um guia claro para cada etapa.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://seu-checkout-aqui.com" target="_blank" rel="noopener">Comprar por R$ 49,00</a>
+          <a class="btn btn-ghost" href="#amostra">Ler amostra</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div style="font-weight:700">Calopsita com Carinho</div>
+        <p class="small">© 2025 Ryan. Todos os direitos reservados.</p>
+        <p class="small">Este site usa cores em amarelo pastel e teal suave para refletir acolhimento e tranquilidade.</p>
+      </div>
+      <div>
+        <div style="font-weight:700">Contato</div>
+        <p class="small">Email: contato@seuemail.com</p>
+        <p class="small">Instagram: @seuperfil</p>
+      </div>
+      <div>
+        <div style="font-weight:700">Legal</div>
+        <p class="small"><a href="#">Termos de uso</a> • <a href="#">Privacidade</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Rolagem suave para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // Exemplo: botão "Ler amostra" abre modal simples (placeholder)
+    const amostraBtn = document.querySelector('a[href="#amostra"]');
+    amostraBtn?.addEventListener('click', e=>{
+      e.preventDefault();
+      alert('Amostra: Baixe o primeiro capítulo gratuitamente! (Substitua por um modal ou link real)');
+    });
+  </script>
+</body>
+</html>
